@@ -1,3 +1,4 @@
+use std::env;
 use reqwest::Client;
 use tokio::time::Instant;
 
@@ -38,6 +39,9 @@ async fn download_all_urls(urls: Vec<String>) {
 
 #[tokio::main]
 async fn main() {
+    env::set_var("RUST_LOG", "debug");
+    env_logger::init();
+
     let urls: Vec<String> = (0..10)
         .map(|i: i32| format!{"http://localhost:5555/{}", i})
         .collect();
